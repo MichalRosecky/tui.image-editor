@@ -246,7 +246,7 @@ export default class Filtersection extends Component {
                     width,
                     height
                 } = this.getCanvas().getActiveObject();
-                const leftPosition = ((width / 2) - left);
+                const leftPosition = (left - (width / 2));
                 const topPosition = (top - (height / 2));
                 // const filter2 = new fabric.Image.filters.Grayscale();
                 const filter = new fabric.Image.filters.Pixelate({
@@ -259,8 +259,8 @@ export default class Filtersection extends Component {
                 const imageData = {
                     imageName: this.getImageName(),
                     url: cloned.toDataURL({
-                        leftPosition,
-                        topPosition,
+                        left: leftPosition,
+                        top: topPosition,
                         width,
                         height
                     })
@@ -268,8 +268,8 @@ export default class Filtersection extends Component {
 
                 fabric.Image.fromURL(imageData.url, oImg => {
                     oImg.set({
-                        leftPosition,
-                        topPosition,
+                        left: leftPosition,
+                        top: topPosition,
                         lockMovementX: true,
                         lockMovementY: true,
                         hasControls: false,
